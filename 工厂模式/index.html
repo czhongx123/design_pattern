@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        /*
+        什么是工厂模式？
+        
+        工厂模式是一种用来创建对象的设计模式。
+        我们不暴露对象创建的逻辑,而是将逻辑封装在一个函数内,
+        那么这个函数可以成为工厂。工厂模式根据抽象程度的不同可以分为：1.简单工厂 2.工厂方法 3.抽象工厂
+        
+        
+        
+        */
+
+        //简单工厂---简单工厂模式只适用于在创建时对象数量少,以及逻辑简单的情况
+        let factory = function (role) {
+            function User(obj) {
+                this.name = obj.name;
+                this.role = obj.role;
+            }
+
+            switch (role) {
+                case 'superman':
+                    return new User({ name: '平台用户', role: ['主页', '登录页'] });
+                    break;
+                case 'man':
+                    return new User({ name: '游客', role: ['登录页'] });
+                    break;
+                default:
+                    throw new Error('参数错误')
+            }
+
+        }
+
+        let superman = factory('superman');
+        let man = factory('man');
+
+        console.log(superman, man)
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,11 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+
+    <script>
+
+
+/*
+单例模式：限制类实例化次数只能一次，一个类只有一个实例，并提供一个访问它的全局访问点。
+单例模式是创建型设计模式的一种。针对全局仅需一个对象的场景，如线程池、全局缓存、window 对象等。
+
+模式特点
+类只有一个实例
+全局可访问该实例
+自行实例化（主动实例化）
+可推迟初始化，即延迟执行（与静态类/对象的区别）
+
+
+*/
+
+
+/*
+适用场景
+
+“单例模式的特点，意图解决：维护一个全局实例对象。”
+
+引用第三方库（多次引用只会使用一个库引用，如 jQuery）
+弹窗（登录框，信息提升框）
+购物车 (一个用户只有一个购物车)
+全局态管理 store (Vuex / Redux)
+项目中引入第三方库时，重复多次加载库文件时，全局只会实例化一个库对象，
+如 jQuery，lodash，moment ..., 其实它们的实现理念也是单例模式应用的一种：
+
+// 引入代码库 libs(库别名）
+if (window.libs != null) {
+  return window.libs;    // 直接返回
+} else {
+  window.libs = '...';   // 初始化
+}
+
+*/
+
+
+
+
+/*
+优缺点：
+
+优点：适用于单一对象，只生成一个对象实例，避免频繁创建和销毁实例，减少内存占用。
+缺点：不适用动态扩展对象，或需创建多个相似对象的场景。
+
+
+*/
+
+
+
+
+        var Single = function (name) {
+            this.name = name;
+            //一个标记，用来判断是否已将创建了该类的实例
+            this.instance = null;
+        }
+
+
+
+
+            // 提供了一个静态方法，用户可以直接在类上调用
+        Single.getInstance = function (name) {
+            // 没有实例化的时候创建一个该类的实例
+            if (!this.instance) {
+                this.instance = new Single(name)
+            }
+            // 已经实例化了，返回第一次实例化对象的引用
+            return this.instance;
+        }
+
+
+        var a = Single.getInstance('a');
+        var b = Single.getInstance('b');
+
+        console.log(a,b,a === b);
+
+
+
+
+    </script>
 </body>
+
 </html>
